@@ -117,9 +117,10 @@ class Encoder:
         return text
 
 def get_encoder(model_name):
-    with open(os.path.join('../models', model_name, 'encoder.json'), 'r') as f:
+    model_path = '../../input/fewshotnlg/models/models'
+    with open(os.path.join(model_path, model_name, 'encoder.json'), 'r') as f:
         encoder = json.load(f)
-    with open(os.path.join('../models', model_name, 'vocab.bpe'), 'r', encoding="utf-8") as f:
+    with open(os.path.join(model_path, model_name, 'vocab.bpe'), 'r', encoding="utf-8") as f:
         bpe_data = f.read()
     bpe_merges = [tuple(merge_str.split()) for merge_str in bpe_data.split('\n')[1:-1]]
     return Encoder(
